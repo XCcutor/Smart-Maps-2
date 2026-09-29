@@ -1,27 +1,44 @@
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { auth } from "../firebase";
+import { useState } from "react";
+import { signInWithPopup, signOut } from "firebase/auth";
+import { auth, googleProvider } from "../firebase";
 
 function Navbar() {
-  const handleLogin = async () => {
+  const [user, setUser] = useState(auth.currentUser);
+
+  const handleGoogleLogin = async () => {
     try {
-      const provider = new GoogleAuthProvider();
-
-      const result = await signInWithPopup(auth, provider);
-
-      console.log("Logged in user:", result.user);
+      const result = await signInWithPopup(auth, googleProvider);
+      setUser(result.user);
     } catch (error) {
-      console.error("Login failed:", error);
+      console.error("Google login failed:", error);
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      setUser(null);
+    } catch (error) {
+      console.error("Logout failed:", error);
     }
   };
 
   return (
     <nav className="navbar">
-      <div className="logo">SmartMaps</div>
+      <div className="logo">Smart Maps</div>
 
-      <div className="nav-links">
-        <button>Explore</button>
-        <button>Saved</button>
-        <button onClick={handleLogin}>Login with Google</button>
+      <div className="nav-actions">
+        {user ? (
+          <>
+            <span className="user-name">{user.displayName}</span>
+
+            <button onClick={handleLogout}>Logout</button>
+          </>
+        ) : (
+          <button className="google-login" onClick={handleGoogleLogin}>
+            Continue with Google
+          </button>
+        )}
       </div>
     </nav>
   );

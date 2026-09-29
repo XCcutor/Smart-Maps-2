@@ -1,7 +1,7 @@
-import Navbar from './components/Navbar'
-import SearchBar from './components/SearchBar';
-import CategoryBar from './components/CategoryBar';
-import MapPlaceholder from './components/MapPlaceHolder';
+import Navbar from "./components/Navbar";
+import SearchBar from "./components/SearchBar";
+import CategoryBar from "./components/CategoryBar";
+import MapPlaceholder from "./components/MapPlaceHolder";
 
 function App() {
   return (
