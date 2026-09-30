@@ -14,3 +14,6 @@ const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
+
+
+//Change its name to firebase.ts

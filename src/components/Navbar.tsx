@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { signInWithPopup, signOut } from "firebase/auth";
 import { auth, googleProvider } from "../firebase";
+import "./Navbar.css";
 
 function Navbar() {
   const [user, setUser] = useState(auth.currentUser);
