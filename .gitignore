@@ -26,3 +26,5 @@ dist-ssr
 /src/firebase.ts
 
 .env
+
+/src/context.txt
